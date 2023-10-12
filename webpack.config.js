@@ -14,7 +14,16 @@ module.exports = {
     filename: "bundled.js",
     path: path.resolve(__dirname, "app"),
   },
-  watch: true,
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "app"),
+      watch: false, // Disable watching of static files to prevent full page reloads
+    },
+    watchFiles: ["app/**/*.html"],
+    hot: true,
+    port: 3000,
+    host: "0.0.0.0", // Set the host to "0.0.0.0" to make the server accessible on the local network
+  },
   module: {
     rules: [
       {
